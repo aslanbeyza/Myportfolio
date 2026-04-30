@@ -7,10 +7,10 @@ describe("portfolio content", () => {
     const content = getPortfolioContent("en");
 
     expect(content.hero.headline).toBe(
-      "I build backend systems that stay reliable under real load."
+      "I build responsive, user-focused interfaces and modern web applications."
     );
     expect(content.hero.supportingText).toBe(
-      "Architecture, reliability, and scale for enterprise software in production."
+      "Product-side work with TypeScript, React, and REST APIs; end-to-end contributions with Node.js, Express, and NestJS when needed."
     );
   });
 
@@ -19,7 +19,7 @@ describe("portfolio content", () => {
 
     expect(content.nav.items[0].label).toBe("Projeler");
     expect(content.contact.headline).toBe(
-      "Önemli işler üretelim."
+      "Birlikte anlamlı ürünler üretelim."
     );
   });
 

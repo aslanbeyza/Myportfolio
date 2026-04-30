@@ -57,24 +57,25 @@ describe("ContactForm", () => {
     const emailInput = screen.getByLabelText("Email");
     const messageInput = screen.getByLabelText("Message");
 
-    await user.type(nameInput, "Alp Talha Yazar");
-    await user.type(emailInput, "alp@example.com");
+    await user.type(nameInput, "Beyza Aslan");
+    await user.type(emailInput, "beyza@example.com");
     await user.type(
       messageInput,
-      "I would like to discuss a backend engineering opportunity."
+      "I would like to discuss a full stack engineering opportunity."
     );
 
-    await user.click(screen.getByRole("button", { name: /Send Message/i }));
+    await user.click(screen.getByRole("button", { name: /Send message/i }));
 
     expect(mockSubmission.onSubmit).toHaveBeenCalledTimes(1);
     expect(nameInput).toHaveValue("Beyza Aslan");
     expect(emailInput).toHaveValue("beyza@example.com");
     expect(messageInput).toHaveValue(
-      "I would like to discuss a backend engineering opportunity."
+      "I would like to discuss a full stack engineering opportunity."
     );
     expect(mockSubmission.onSubmit).toHaveBeenCalledWith(
       expect.objectContaining({
-        subject: "I would like to discuss a backend engineering opportunity",
+        subject:
+          "I would like to discuss a full stack engineering opportunity",
       })
     );
   });
@@ -89,7 +90,7 @@ describe("ContactForm", () => {
     ).toBeVisible();
     expect(screen.getByText("I'll get back to you as soon as possible.")).toBeVisible();
     expect(
-      screen.queryByRole("button", { name: /Send Message/i })
+      screen.queryByRole("button", { name: /send message/i })
     ).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Subject")).not.toBeInTheDocument();
   });

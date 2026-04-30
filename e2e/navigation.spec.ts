@@ -11,14 +11,16 @@ test.describe("Navigation", () => {
     const response = await page.goto("/");
 
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Senior Backend Engineer/i);
+    await expect(page).toHaveTitle(/Full Stack Developer/i);
     await expect(
       page.getByRole("heading", {
         name: /Beyza Aslan/i,
       })
     ).toBeVisible();
     await expect(
-      page.getByText(/Gerçek yük altında güvenilir kalan backend sistemleri geliştiriyorum\./i)
+      page.getByText(
+        /Duyarlı, kullanıcı odaklı arayüzler ve modern web uygulamaları geliştiriyorum\./i
+      )
     ).toBeVisible();
   });
 

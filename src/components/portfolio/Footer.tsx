@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 import type { PortfolioContent } from "@/types/portfolio";
 
-import { socialLinks } from "@/lib/site";
+import { siteConfig, socialLinks } from "@/lib/site";
 
 interface FooterProps {
   content: PortfolioContent["footer"];
@@ -63,7 +63,8 @@ export function Footer({ content, nav }: FooterProps) {
             })}
           </div>
           <p className="text-sm text-faint">
-            © {new Date().getFullYear()} Alp Talha Yazar. {content.copyright}
+            © {new Date().getFullYear()} {siteConfig.fullName}.{" "}
+            {content.copyright}
           </p>
         </div>
       </div>

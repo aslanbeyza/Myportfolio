@@ -1,3 +1,5 @@
+export { Button, buttonVariants } from "./button";
+export { HandWrittenTitle } from "./hand-writing-text";
 export { default as HologramCard } from "./HologramCard";
 export { default as LightsaberButton } from "./LightsaberButton";
 export { default as LoadingSpinner } from "./LoadingSpinner";

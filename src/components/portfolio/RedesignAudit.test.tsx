@@ -27,8 +27,10 @@ describe("portfolio redesign fidelity", () => {
   it("keeps the capabilities section on an auto-fit card matrix", () => {
     render(<Capabilities content={content.capabilities} />);
 
-    const backendCard = screen.getByText("Backend").closest("article");
-    const grid = backendCard?.parentElement;
+    const capabilityCard = screen
+      .getByText("Languages & core")
+      .closest("article");
+    const grid = capabilityCard?.parentElement;
 
     expect(grid).toHaveClass("grid-cols-[repeat(auto-fit,minmax(280px,1fr))]");
   });

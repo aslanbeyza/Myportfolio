@@ -2,58 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 
+import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import { siteConfig } from "@/lib/site";
-import { cn } from "@/lib/utils";
 import type { PortfolioHeroContent } from "@/types/portfolio";
-
-const HERO_IMAGE = "/images/beyza-hero.jpeg" as const;
 
 interface HeroProps {
   content: PortfolioHeroContent;
-}
-
-function HeroPortraitFrame({
-  className,
-  priority = false,
-}: {
-  className?: string;
-  priority?: boolean;
-}) {
-  return (
-    <div
-      className={cn(
-        "relative aspect-square w-72 max-w-full shrink-0 sm:w-80 lg:w-96 min-[1280px]:w-[28rem] 2xl:w-[32rem]",
-        className,
-      )}
-    >
-      <div
-        className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent/45 via-accent/5 to-transparent opacity-90"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -inset-2 rounded-2xl bg-accent/20 blur-2xl"
-        aria-hidden
-      />
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border/50 bg-card/20 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_24px_64px_rgba(0,0,0,0.35)] ring-2 ring-white/[0.07]">
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-background/25 via-transparent to-background/5"
-          aria-hidden
-        />
-        <Image
-          src={HERO_IMAGE}
-          alt={siteConfig.fullName}
-          width={760}
-          height={760}
-          priority={priority}
-          unoptimized
-          sizes="(max-width: 1023px) 90vw, (max-width: 1535px) 28rem, 32rem"
-          className="h-full w-full object-cover object-[center_20%]"
-        />
-      </div>
-    </div>
-  );
 }
 
 export function Hero({ content }: HeroProps) {
@@ -64,11 +19,17 @@ export function Hero({ content }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden px-5 pb-24 pt-28 sm:px-8"
+      className="relative isolate flex min-h-screen items-center overflow-hidden px-5 pb-24 pt-28 sm:px-8"
     >
-      <div className="absolute inset-0 shell-grid opacity-50" aria-hidden />
+      {/* Tüm dekoratif arka plan bu kutu içinde; flex akışına karışmaz */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
+        aria-hidden
+      >
+        <div className="absolute inset-0 shell-grid opacity-[0.34]" />
+      </div>
 
-      <div className="pointer-events-none absolute right-6 top-1/2 hidden -translate-y-1/2 lg:right-8 lg:flex lg:flex-col lg:items-center lg:gap-4 xl:right-10">
+      <div className="pointer-events-none absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 lg:right-8 lg:flex lg:flex-col lg:items-center lg:gap-4 xl:right-10">
         <div className="h-20 w-px bg-border" />
         <span className="mono-label writing-vertical rotate-180 text-muted-foreground">
           {content.availability}
@@ -77,8 +38,8 @@ export function Hero({ content }: HeroProps) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-6 xl:gap-8">
-          <div className="min-w-0">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-14">
+          <div className="order-2 min-w-0 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,32 +48,6 @@ export function Hero({ content }: HeroProps) {
             >
               <div className="h-px w-8 bg-accent" />
               <span className="mono-label text-accent">{content.eyebrow}</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.08 }}
-              aria-label={siteConfig.fullName}
-              className="max-w-5xl text-[clamp(3.75rem,9.5vw,6.75rem)] font-bold leading-[0.92] tracking-[-0.06em] text-foreground"
-            >
-              {firstNames ? (
-                <>
-                  {firstNames}
-                  <br />
-                </>
-              ) : null}
-              <span>{lastName}</span>
-              <span className="text-accent">.</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="mt-6 lg:hidden"
-            >
-              <HeroPortraitFrame className="mx-auto" priority />
             </motion.div>
 
             <motion.p
@@ -161,14 +96,25 @@ export function Hero({ content }: HeroProps) {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="max-lg:hidden flex min-w-0 items-center justify-start self-center lg:col-start-2"
-          >
-            <HeroPortraitFrame priority />
-          </motion.div>
+          <div className="order-1 flex min-h-[280px] items-center justify-center sm:min-h-[340px] lg:order-2 lg:h-full lg:min-h-[min(72vh,620px)]">
+            <HandWrittenTitle
+              decorationSide="panel"
+              className="mx-auto aspect-5/4 w-full max-w-[min(100%,420px)] sm:max-w-[min(100%,480px)] lg:aspect-auto lg:h-full lg:max-h-none lg:min-h-0 lg:w-full lg:max-w-none"
+              titleClassName="text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.92] tracking-[-0.06em] uppercase lg:text-[clamp(3rem,5.5vw,5.5rem)]"
+              title={
+                <>
+                  {firstNames ? (
+                    <>
+                      {firstNames}
+                      <br />
+                    </>
+                  ) : null}
+                  {lastName}
+                </>
+              }
+              aria-label={siteConfig.fullName}
+            />
+          </div>
         </div>
       </div>
 

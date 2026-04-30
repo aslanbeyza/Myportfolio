@@ -3,9 +3,9 @@ import type { PortfolioContent } from "@/types/portfolio";
 export const portfolioContentTr: PortfolioContent = {
   locale: "tr",
   metadata: {
-    title: "Beyza Aslan | Frontend Developer",
+    title: "Beyza Aslan | Full Stack Developer",
     description:
-      "Modern web uygulamaları tasarlayıp geliştiren; HTML, CSS, JavaScript, TypeScript ve React ile duyarlı arayüzler; Node.js, Express ve REST API deneyimine sahip bir geliştirici.",
+      "Modern web uygulamalarında ön yüz ve arka uç ile çalışan full stack geliştirici; HTML, CSS, JavaScript, TypeScript, React; Node.js, Express, NestJS ve REST API ile uçtan uca teslimat.",
   },
   nav: {
     homeLabel: "BA",
@@ -21,7 +21,7 @@ export const portfolioContentTr: PortfolioContent = {
     openMenuLabel: "Navigasyonu aç",
   },
   hero: {
-    eyebrow: "FRONTEND DEVELOPER",
+    eyebrow: "FULL STACK DEVELOPER",
     availability: "UYGUN · REMOTE & HİBRİT",
     headline:
       "Duyarlı, kullanıcı odaklı arayüzler ve modern web uygulamaları geliştiriyorum.",
@@ -47,13 +47,13 @@ export const portfolioContentTr: PortfolioContent = {
   about: {
     sectionNumber: "02",
     sectionTitle: "HAKKIMDA",
-    lead: "Kullanılabilir, temiz koda değer veren ve sürekli gelişen bir frontend geliştiricisiyim.",
+    lead: "Kullanılabilir, temiz koda değer veren ve sürekli gelişen bir full stack geliştiricisiyim.",
     paragraphs: [
       "Tasarım ve geliştirme odaklı modern web uygulamalarında çalışıyorum. HTML, CSS, JavaScript, TypeScript ve React ile duyarlı ve anlaşılır kullanıcı arayüzleri üretiyor; Node.js, Express ve REST API ile backend tarafıyla entegre, uçtan uca düşünülen özelliklerde yer alıyorum.",
       "8 aylık yoğun Frontend Web Development eğitimine kabul alıp 2024’te mezun oldum; React, TypeScript, Express ve JavaScript ile yüksek performanslı, duyarlı projeler geliştirdim. Kırklareli Üniversitesi Yazılım Mühendisliği lisans eğitimini 2025’te tamamladım. GDG Kırklareli bünyesinde Tasarım Ekibi üyesi olarak topluluk etkinlikleri için görseller ve marka materyalleri ürettim.",
       "Güçlü problem çözme ve iş birliğine açık bir çalışma tarzına sahibim. Türkçe ana dil, İngilizce etkin iletişim seviyesindeyim.",
     ],
-    statusPill: "Bağcılar, İstanbul · Remote fırsatlara açık",
+    statusPill: "İstanbul · Remote fırsatlara açık",
   },
   experience: {
     sectionNumber: "03",
@@ -63,7 +63,7 @@ export const portfolioContentTr: PortfolioContent = {
     items: [
       {
         number: "01",
-        company: "Egeli Bilgi Güvenliği",
+        company: "Egeline Bilgi Güvenliği",
         role: "Yazılım Geliştirici",
         period: "Eylül 2025 – Nisan 2026",
         location: "İstanbul, Türkiye",
@@ -118,7 +118,7 @@ export const portfolioContentTr: PortfolioContent = {
       {
         number: "01",
         name: "Kurumsal yönetim paneli (PHP)",
-        company: "Egeli Bilgi Güvenliği",
+        company: "Egeline Bilgi Güvenliği",
         contextLabel: "Almanya müşterisi · veri ve süreç yönetimi",
         description:
           "Kurumsal müşteri ihtiyaçlarına göre tasarlanmış, sürdürülebilir PHP tabanlı yönetim arayüzü; veri girişi, onay ve raporlama odaklı akışlarda temiz mimari ve backend uyumu.",
@@ -147,7 +147,7 @@ export const portfolioContentTr: PortfolioContent = {
       {
         number: "02",
         name: "RAG tabanlı AI asistan / astroloji platformu",
-        company: "Egeli Bilgi Güvenliği",
+        company: "Egeline Bilgi Güvenliği",
         contextLabel: "Uçtan uca ürün · AI + arayüz",
         description:
           "Büyük dil modelleri ve RAG (retrieval-augmented generation) desenleriyle zenginleştirilen, uçtan uca ürün deneyiminde hem ön uç hem arka uç süreçlerine katılım; gerçek iterasyon, test ve canlıya yaklaşım tecrübesi.",
@@ -294,7 +294,7 @@ export const portfolioContentTr: PortfolioContent = {
     },
   },
   footer: {
-    strapline: "Beyza Aslan · Frontend Developer · İstanbul",
+    strapline: "Beyza Aslan · Full Stack Developer · İstanbul",
     copyright: "Tüm hakları saklıdır.",
   },
   notFound: {

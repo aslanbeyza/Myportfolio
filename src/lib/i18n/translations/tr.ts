@@ -34,7 +34,7 @@ export const tr = {
     subtitle: "Kullanıcı odaklı arayüzler ve anlaşılır kod",
     description: [
       "Modern web uygulamaları tasarlayıp geliştiriyorum. HTML, CSS, JavaScript, TypeScript ve React ile duyarlı, kullanıcı dostu arayüzler üretiyor; Node.js, Express ve REST API ile arka uç entegrasyonlarında yer alıyorum.",
-      "8 aylık yoğun Frontend Web Development eğitimine kabul alıp 2024’te mezun oldum. Kırklareli Üniversitesi Yazılım Mühendisliği lisansını 2025’te tamamladım; GDG Kırklareli’de Tasarım Ekibi üyesi olarak topluluk etkinliklerine katkı verdim. Medya Takip Merkezi ve Egeli Bilgi Güvenliği gibi ekiplerde ürün taraflı tecrübe edindim.",
+      "8 aylık yoğun Frontend Web Development eğitimine kabul alıp 2024’te mezun oldum. Kırklareli Üniversitesi Yazılım Mühendisliği lisansını 2025’te tamamladım; GDG Kırklareli’de Tasarım Ekibi üyesi olarak topluluk etkinliklerine katkı verdim. Medya Takip Merkezi ve Egeline Bilgi Güvenliği gibi ekiplerde ürün taraflı tecrübe edindim.",
       "Güçlü problem çözme ve iş birliğine açık bir çalışma tarzına sahibim. Türkçe ana dil, İngilizce akıcı iletişim seviyesindeyim; temiz, verimli kod ve yeni teknolojilere adaptasyon konusunda kararlıyım.",
     ],
     whatIBring: "Neler Sunuyorum",

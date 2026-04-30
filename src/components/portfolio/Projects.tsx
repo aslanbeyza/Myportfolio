@@ -57,7 +57,7 @@ export function Projects({ content }: ProjectsProps) {
 
   return (
     <section id="projects" className="section-shell border-t border-border">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <SectionLabel
           number={content.sectionNumber}
           title={content.sectionTitle}
@@ -80,12 +80,15 @@ export function Projects({ content }: ProjectsProps) {
                 className="space-y-3"
                 data-project-row={rowIndex}
               >
-                <div className="grid gap-3 xl:grid-cols-2">
+                <div
+                  className={projectCardsGridClass(row.length)}
+                  data-project-cards={row.length}
+                >
                   {row.map((item, itemIndex) => (
                     <ProjectCard
                       key={item.number}
                       item={item}
-                      index={rowIndex * 2 + itemIndex}
+                      index={rowIndex * row.length + itemIndex}
                       content={content}
                       isActive={activeItemNumber === item.number}
                       onToggle={() => toggleItem(item.number)}
@@ -372,6 +375,10 @@ function hasProjectDetails(item: ProjectItem): item is InspectableProjectItem {
 }
 
 function createProjectRows(items: readonly ProjectItem[]) {
+  if (items.length === 3) {
+    return [[items[0], items[1], items[2]]];
+  }
+
   const rows: ProjectItem[][] = [];
 
   items.forEach((item, index) => {
@@ -385,6 +392,17 @@ function createProjectRows(items: readonly ProjectItem[]) {
   });
 
   return rows;
+}
+
+function projectCardsGridClass(rowLength: number): string {
+  const base = "grid min-w-0 items-stretch";
+  if (rowLength >= 3) {
+    return `${base} grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-3 lg:gap-5 xl:gap-6`;
+  }
+  if (rowLength === 2) {
+    return `${base} grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-4`;
+  }
+  return `${base} grid-cols-1 gap-3`;
 }
 
 function getPreviewEntries(

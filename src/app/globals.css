@@ -67,6 +67,14 @@ html.light-theme {
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-error: var(--error);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--foreground);
+  --color-destructive: var(--error);
+  --color-destructive-foreground: var(--foreground);
+  --color-input: var(--border);
+  --color-ring: var(--focus-border);
 }
 
 * {
@@ -461,6 +469,13 @@ textarea {
 
   .project-dossier {
     padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-project-cards="3"] .project-preview-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 }
 

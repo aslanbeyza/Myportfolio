@@ -22,6 +22,30 @@ Object.defineProperty(globalThis, "scrollTo", {
   value: vi.fn(),
 });
 
+const localStorageStore = new Map<string, string>();
+const localStorageMock: Storage = {
+  get length() {
+    return localStorageStore.size;
+  },
+  clear: vi.fn(() => {
+    localStorageStore.clear();
+  }),
+  getItem: vi.fn((key: string) =>
+    localStorageStore.has(key) ? localStorageStore.get(key)! : null
+  ),
+  key: vi.fn((index: number) => [...localStorageStore.keys()][index] ?? null),
+  removeItem: vi.fn((key: string) => {
+    localStorageStore.delete(key);
+  }),
+  setItem: vi.fn((key: string, value: string) => {
+    localStorageStore.set(key, value);
+  }),
+};
+Object.defineProperty(globalThis, "localStorage", {
+  configurable: true,
+  value: localStorageMock,
+});
+
 // Mock matchMedia for theme/motion preference tests
 Object.defineProperty(globalThis, "matchMedia", {
   writable: true,

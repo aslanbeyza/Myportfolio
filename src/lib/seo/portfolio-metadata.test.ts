@@ -6,7 +6,7 @@ describe("portfolio metadata", () => {
   it("builds turkish canonical metadata for the root route", () => {
     const metadata = buildPortfolioMetadata("tr");
 
-    expect(metadata.alternates?.canonical).toBe("https://www.alptalha.dev/");
+    expect(metadata.alternates?.canonical).toBe("https://www.beyzaaslan.dev/");
     expect(metadata.alternates?.languages).toEqual({
       en: "https://www.beyzaaslan.dev/en/",
       tr: "https://www.beyzaaslan.dev/",
@@ -18,7 +18,7 @@ describe("portfolio metadata", () => {
         url: "https://www.beyzaaslan.dev/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Beyza Aslan portfolyo onizlemesi",
+        alt: "Beyza Aslan portfolyo önizlemesi",
       },
     ]);
     expect(metadata.twitter).toMatchObject({
@@ -26,7 +26,7 @@ describe("portfolio metadata", () => {
       images: [
         {
           url: "https://www.beyzaaslan.dev/twitter-image",
-          alt: "Beyza Aslan portfolyo onizlemesi",
+          alt: "Beyza Aslan portfolyo önizlemesi",
         },
       ],
     });
@@ -49,8 +49,8 @@ describe("portfolio metadata", () => {
       card: "summary_large_image",
       images: [
         {
-          url: "https://www.alptalha.dev/en/twitter-image",
-          alt: "Alp Talha Yazar portfolio preview",
+          url: "https://www.beyzaaslan.dev/en/twitter-image",
+          alt: "Beyza Aslan portfolio preview",
         },
       ],
     });

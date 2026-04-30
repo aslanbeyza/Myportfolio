@@ -13,9 +13,9 @@ export const socialPreviewSize = {
 export const socialPreviewContentType = "image/png";
 
 const socialPreviewAlt: Record<PortfolioLocale, string> = {
-  en: "Alp Talha Yazar portfolio preview",
-  tr: "Alp Talha Yazar portfolyo onizlemesi",
-  es: "Vista previa del portafolio de Alp Talha Yazar",
+  en: "Beyza Aslan portfolio preview",
+  tr: "Beyza Aslan portfolyo önizlemesi",
+  es: "Vista previa del portafolio de Beyza Aslan",
 };
 
 export function getSocialPreviewAlt(locale: PortfolioLocale) {

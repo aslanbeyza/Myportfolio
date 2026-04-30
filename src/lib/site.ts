@@ -16,14 +16,14 @@ function resolveCanonicalBaseUrl(): string {
   const candidates = [
     process.env.NEXT_PUBLIC_BASE_URL,
     process.env.NEXT_PUBLIC_SITE_URL,
-    "https://www.alptalha.dev",
+    "https://www.beyzaaslan.dev",
   ];
 
   const publicCandidate = candidates.find(
     (value): value is string => value !== undefined && !isLocalUrl(value)
   );
 
-  return (publicCandidate || "https://www.alptalha.dev").replace(/\/+$/, "");
+  return (publicCandidate || "https://www.beyzaaslan.dev").replace(/\/+$/, "");
 }
 
 const resolvedBaseUrl = resolveCanonicalBaseUrl();
