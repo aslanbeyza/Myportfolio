@@ -1,0 +1,68 @@
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+import { PortfolioThemeProvider } from "@/components/portfolio/theme";
+import StructuredData from "@/components/utils/StructuredData";
+import { PORTFOLIO_THEME_COLOR } from "@/lib/portfolio/theme";
+import { portfolioThemeScript } from "@/lib/portfolio/theme-script";
+import type { PortfolioLocale } from "@/types/portfolio";
+
+import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.beyzaaslan.dev"),
+};
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const headersList = await headers();
+  const localeHeader = headersList.get("x-locale");
+  const requestLocale: PortfolioLocale =
+    localeHeader === "en" ? "en" : "tr";
+
+  return (
+    <html lang={requestLocale} className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <StructuredData locale={requestLocale} />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="theme-color" content={PORTFOLIO_THEME_COLOR.light} />
+        <script
+          dangerouslySetInnerHTML={{ __html: portfolioThemeScript }}
+          id="portfolio-theme-script"
+        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      <body
+        className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} bg-background text-foreground antialiased`}
+      >
+        <PortfolioThemeProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          {children}
+        </PortfolioThemeProvider>
+      </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      ) : null}
+    </html>
+  );
+}

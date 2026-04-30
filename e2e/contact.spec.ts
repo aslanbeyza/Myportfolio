@@ -1,0 +1,62 @@
+import { expect, test } from "@playwright/test";
+
+import { mockCsrfToken } from "./support/mockCsrf";
+
+test.describe("Contact form", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockCsrfToken(page);
+    await page.goto("/");
+    await page.locator("#contact").scrollIntoViewIfNeeded();
+  });
+
+  test("renders the real contact form fields", async ({ page }) => {
+    const contactSection = page.locator("#contact");
+
+    await expect(contactSection.getByLabel("Name")).toBeVisible();
+    await expect(contactSection.getByLabel("Email")).toBeVisible();
+    await expect(contactSection.getByLabel("Subject")).toHaveCount(0);
+    await expect(contactSection.getByLabel("Message")).toBeVisible();
+    await expect(
+      contactSection.getByRole("button", { name: /Send Message/i })
+    ).toBeVisible();
+  });
+
+  test("shows client-side validation messages", async ({ page }) => {
+    const contactSection = page.locator("#contact");
+
+    await contactSection.getByRole("button", { name: /Send Message/i }).click();
+
+    await expect(page.getByText("Please enter your name.")).toBeVisible();
+    await expect(page.getByText("Please enter a valid email address.")).toBeVisible();
+    await expect(page.getByText("Message must be at least 10 characters.")).toBeVisible();
+  });
+
+  test("shows the success state after a successful submission", async ({
+    page,
+  }) => {
+    const contactSection = page.locator("#contact");
+
+    await page.route("**/api/contact/", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true, message: "ok" }),
+      });
+    });
+
+    await contactSection.getByLabel("Name").fill("Beyza Aslan");
+    await contactSection.getByLabel("Email").fill("beyzap@example.com");
+    await contactSection
+      .getByLabel("Message")
+      .fill("I would like to discuss a backend engineering opportunity.");
+
+    await contactSection.getByRole("button", { name: /Send Message/i }).click();
+
+    await expect(
+      page.getByRole("heading", { name: "Message received." })
+    ).toBeVisible();
+    await expect(
+      page.getByText("I'll get back to you as soon as possible.")
+    ).toBeVisible();
+  });
+});
