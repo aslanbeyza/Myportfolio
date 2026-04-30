@@ -7,10 +7,10 @@
       "has": [
         {
           "type": "host",
-          "value": "alptalha.dev"
+          "value": "beyzaaslan.dev"
         }
       ],
-      "destination": "https://www.alptalha.dev/$1",
+      "destination": "https://www.beyzaaslan.dev/$1",
       "statusCode": 301
     }
   ],
@@ -18,7 +18,7 @@
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "https://www.alptalha.dev" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://www.beyzaaslan.dev" },
         { "key": "Access-Control-Allow-Methods", "value": "POST, OPTIONS" },
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]

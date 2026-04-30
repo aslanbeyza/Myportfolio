@@ -8,7 +8,6 @@
     "build": "npm run validate:env:production && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "dotenvx run --env-file=.env.production -- npm run validate:env:production && dotenvx run --env-file=.env.production -- next build",
     "type-check": "tsc --noEmit",
     "validate:env": "tsx scripts/validate-env.ts --mode=development",
     "validate:env:production": "tsx scripts/validate-env.ts --mode=production",

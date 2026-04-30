@@ -127,6 +127,21 @@ const ENV_CATEGORIES = {
 } as const;
 
 /**
+ * Dotenvx ciphertext cannot be validated without DOTENV_PRIVATE_KEY_*.
+ * Omit those entries so Vercel/dashboard plaintext vars apply and optional keys do not fail format checks.
+ */
+function environmentForValidation(): Record<string, string | undefined> {
+  const env = { ...process.env } as Record<string, string | undefined>;
+  for (const key of Object.keys(env)) {
+    const value = env[key];
+    if (typeof value === "string" && value.startsWith("encrypted:")) {
+      delete env[key];
+    }
+  }
+  return env;
+}
+
+/**
  * Validates environment variables and returns detailed results
  */
 export function validateEnvironmentVariables(): ValidationResult {
@@ -138,7 +153,7 @@ export function validateEnvironmentVariables(): ValidationResult {
 
   try {
     // Validate the environment variables
-    const validatedEnv = envSchema.parse(process.env);
+    const validatedEnv = envSchema.parse(environmentForValidation());
 
     // Check for potential issues and add warnings
     addWarnings(result, validatedEnv);

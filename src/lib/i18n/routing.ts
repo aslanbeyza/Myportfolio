@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site";
+
 import { defaultLanguage, supportedLanguages, type Language } from "./config";
 
 export const publicPortfolioLocales = supportedLanguages.filter(
@@ -30,7 +32,7 @@ export function buildLocalizedHref(
   locale: Language,
   currentHref: string
 ): string {
-  const url = new URL(currentHref, "https://www.alptalha.dev");
+  const url = new URL(currentHref, `${siteConfig.baseUrl}/`);
   const pathname = stripLocaleFromPathname(url.pathname);
 
   const localizedPathname =
