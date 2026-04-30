@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+  // Çoklu lockfile uyarısı: Turbopack kökü = işlem ÇWD (npm run dev/build proje kökünden)
+  turbopack: {
+    root: process.cwd(),
+  },
   // Security headers now handled by src/proxy.ts
 };
 

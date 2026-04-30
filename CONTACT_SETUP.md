@@ -60,21 +60,11 @@ EMAIL_TO=your_email@gmail.com
 
 4. **Check your Gmail inbox** for the contact form submission
 
-## Production Secrets with dotenvx
+## Production secrets (Vercel)
 
-The repository keeps production secrets in two places:
+Production values are **not** stored in the repository. Add the same keys as in `.env.example` (including Gmail and every `NEXT_PUBLIC_*` field) in **Vercel → Project → Settings → Environment Variables**.
 
-- `.env.production.local`: local plaintext production values, ignored by git
-- `.env.production`: encrypted production values, committed to git
-
-Update production secrets with this workflow:
-
-1. Edit `.env.production.local` locally.
-2. Run `npm run sync:env:production`.
-3. Commit the regenerated `.env.production`.
-4. Keep `.env.keys` local only.
-
-For deployment, inject `DOTENV_PRIVATE_KEY_PRODUCTION` from `.env.keys` into your hosting platform and run `npm run vercel-build` or `npm run build:encrypted`.
+For a **local** production build check only, you may create `.env.production.local` (gitignored) with plaintext values and run `npm run validate:env:production` or `npm run build`.
 
 ## Features
 
@@ -111,7 +101,7 @@ The contact form sends beautifully formatted HTML emails with:
    - Check that all environment variables are set correctly
    - Verify the correct local env file exists in the project root:
      development uses `.env.local`
-     production verification uses `.env.production.local` or `dotenvx run --env-file=.env.production -- ...`
+     production verification uses `.env.production.local` (optional) or the variables injected by your host (e.g. Vercel)
 
 2. **"Failed to connect to Gmail SMTP server" error**:
 
@@ -141,28 +131,15 @@ The contact form sends beautifully formatted HTML emails with:
 
 When deploying to production:
 
-1. **Commit the encrypted production env file**:
+1. **Configure environment variables on the host** (e.g. Vercel dashboard): add every required key from `.env.example`; use HTTPS URLs for `NEXT_PUBLIC_BASE_URL` / `NEXT_PUBLIC_SITE_URL`.
 
-   - Keep real values in `.env.production.local`
-   - Run `npm run sync:env:production`
-   - Commit only `.env.production`
-
-2. **Set the dotenvx private key** in your hosting platform:
-
-   - Vercel: Project Settings → Environment Variables
-   - Netlify: Site Settings → Environment Variables
-   - Heroku: Config Vars in dashboard
-
-   ```bash
-   DOTENV_PRIVATE_KEY_PRODUCTION=your-private-key-from-.env.keys
-   ```
-
-3. **Security considerations**:
-   - Never commit `.env.local` or `.env` files
-   - Never commit `.env.production.local` or `.env.keys`
-   - Use different App Passwords for different environments
-   - Consider implementing rate limiting for production
+2. **Security considerations**:
+   - Never commit `.env.local`, `.env.production.local`, or raw secrets
+   - Use different Gmail App Passwords per environment if useful
+   - Consider enabling Upstash Redis for distributed rate limiting
    - Monitor email usage to stay within Gmail's limits
+
+Optional: keep `.env.production.local` only on your machine for local `npm run build` tests — do not push it to GitHub.
 
 ## Gmail Limits
 

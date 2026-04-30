@@ -136,19 +136,13 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
       console.error(
         colorize(
           "yellow",
-          "1. Store plaintext production values only in .env.production.local for local verification"
+          "1. For a local production check: create `.env.production.local` with every required key (mirror `.env.example`, use https URLs)."
         )
       );
       console.error(
         colorize(
           "yellow",
-          "2. Or preload the encrypted repo file with dotenvx run --env-file=.env.production -- npm run validate:env:production"
-        )
-      );
-      console.error(
-        colorize(
-          "yellow",
-          "3. Keep DOTENV_PRIVATE_KEY_PRODUCTION outside git and inject it via your runtime or deployment platform"
+          "2. For Vercel or another host: add the same keys under Environment Variables in the dashboard — secrets stay out of git."
         )
       );
     } else {
@@ -161,7 +155,10 @@ async function main(argv = process.argv.slice(2)): Promise<void> {
       );
     }
     console.error(
-      colorize("yellow", "4. See CONTACT_SETUP.md for Gmail configuration help")
+      colorize(
+        "yellow",
+        `${mode === "production" ? "3" : "4"}. See CONTACT_SETUP.md for Gmail configuration help`
+      )
     );
 
     process.exit(1);
